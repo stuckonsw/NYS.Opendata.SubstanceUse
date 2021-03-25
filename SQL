@@ -1,0 +1,12 @@
+--basic code to show where there were zero claims by type of claim. This will demonstrate which claims are being used more frequently than others.
+--This can help guide agencies and statewide planners
+
+ SELECT 
+    services,
+		COUNT (claims) as no_claims   
+from suds
+ 
+   Where claims = 0
+   
+Group by services
+order by no_claims desc
