@@ -3,10 +3,27 @@
 
  SELECT 
     services,
-		COUNT (claims) as no_claims   
+    COUNT (claims) as no_claims   
 from suds
  
    Where claims = 0
    
 Group by services
 order by no_claims desc
+
+
+
+----Averge amount of claims and recepients by service
+
+select 
+    county, 
+    services,
+    TRUNC (AVG ( claims), 2) as avg_claims,
+    TRUNC (AVG (recipients), 2) as avg_recepients
+
+From suds 
+
+Group by services,
+         county
+
+
