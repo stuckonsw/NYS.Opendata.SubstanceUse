@@ -27,3 +27,25 @@ Group by services,
          county
 
 
+
+---Ratio of Claims to recepients
+
+SELECT 
+   services,
+   avg_claims/NULLIF (avg_recepients, 0) as ratio
+
+From
+
+(select 
+    county, 
+    services,
+    TRUNC (AVG ( claims), 2) as avg_claims,
+    TRUNC (AVG (recipients), 2) as avg_recepients
+
+From suds 
+
+Group by services,
+         county ) averages
+	
+Group by services,
+         ratio
